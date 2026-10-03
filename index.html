@@ -1988,7 +1988,7 @@ async function saveExport(){
   const dataUrl=expCanvas.toDataURL("image/jpeg",.92);
   if(window.AppBridge&&typeof AppBridge.saveImage==="function"){
     let r="error";try{r=String(AppBridge.saveImage(dataUrl.split(",")[1],expName));}catch(e){}
-    msg.textContent=r==="ok"?"端末の「ピクチャ」→「スクーター最高速計算機」に保存しました。":r==="unsupported"?"この端末（Android 9以前）ではアプリから保存できません。表示中の画像をスクリーンショットしてください。":"保存できませんでした。表示中の画像をスクリーンショットしてください。";
+    msg.textContent=r==="ok"?"端末の「ピクチャ」→「SD測る君」に保存しました。":r==="unsupported"?"この端末（Android 9以前）ではアプリから保存できません。表示中の画像をスクリーンショットしてください。":"保存できませんでした。表示中の画像をスクリーンショットしてください。";
     return;
   }
   /* iPhone・Android の Safari/Chrome：共有シートから「画像を保存」 */
@@ -2162,14 +2162,14 @@ function csvToRun(text,name){
 /* ---- GPS：アプリは端末のGPS（AppBridge）、ブラウザは位置情報API ---- */
 const GPS={id:null,users:new Set(),native:()=>!!(window.AppBridge&&typeof AppBridge.gpsStart==="function"),
   start(u){u=u||"run";this.users.add(u);
-    if(this.native()){if(u==="run"){let r="nogps";try{r=String(AppBridge.gpsStart());}catch(e){}gpsState(r);}return;}
+    if(this.native()){if(this.users.size===1||u==="run"){let r="nogps";try{r=String(AppBridge.gpsStart());}catch(e){}if(u==="run")gpsState(r);}return;}
     if(this.id!=null)return;
     if(!navigator.geolocation){gpsState("nogps");return;}
     if(u==="run")gpsState("wait");
     this.id=navigator.geolocation.watchPosition(p=>phoneFix(p.timestamp,p.coords.latitude,p.coords.longitude,p.coords.speed==null?-1:p.coords.speed,p.coords.altitude,p.coords.accuracy,p.coords.heading),
       e=>gpsState(e.code===1?"denied":e.code===2?"off":"wait"),{enableHighAccuracy:true,maximumAge:0,timeout:20000});},
   stop(u){u=u||"run";this.users.delete(u);
-    if(this.native()){if(u==="run"){try{AppBridge.gpsStop();}catch(e){}}return;}
+    if(this.native()){if(!this.users.size){try{AppBridge.gpsStop();}catch(e){}}return;}
     if(!this.users.size&&this.id!=null){navigator.geolocation.clearWatch(this.id);this.id=null;}}};
 /* 画面を消さない（アプリ版は消しても記録が続く） */
 let KS=true;try{KS=localStorage.getItem("scooter-keep")!=="0";}catch(e){}
@@ -2357,7 +2357,7 @@ function runListClick(e){
 async function saveRunCSV(run){
   const d=new Date(run.start),name=`走行_${d.getFullYear()}${pad2(d.getMonth()+1)}${pad2(d.getDate())}-${pad2(d.getHours())}${pad2(d.getMinutes())}.csv`,text=runToCSV(run),msg=$("#runMsg");
   if(window.AppBridge&&typeof AppBridge.saveText==="function"){let r="error";try{r=String(AppBridge.saveText(text,name));}catch(e){}
-    msg.textContent=r==="ok"?`「ダウンロード」→「スクーター最高速計算機」に ${name} を保存しました。`:r==="unsupported"?"この端末（Android 9以前）ではCSVを保存できません。記録はアプリの中に残っています。":"保存できませんでした。";return;}
+    msg.textContent=r==="ok"?`「ダウンロード」→「SD測る君」に ${name} を保存しました。`:r==="unsupported"?"この端末（Android 9以前）ではCSVを保存できません。記録はアプリの中に残っています。":"保存できませんでした。";return;}
   const blob=new Blob([text],{type:"text/csv"});
   if(navigator.canShare&&navigator.share){const file=new File([blob],name,{type:"text/csv"});let can=false;try{can=navigator.canShare({files:[file]});}catch(e){}
     if(can){try{await navigator.share({files:[file]});msg.textContent="共有メニューから保存・送信できます。";return;}catch(e){if(e&&e.name==="AbortError")return;}}}
