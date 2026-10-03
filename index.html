@@ -421,7 +421,7 @@ ul.src{margin:0;padding-left:1.2em;display:grid;gap:6px;font-size:13px;line-heig
 
 <div class="wrap">
   <header class="top">
-    <h1>スクーター最高速計算機<small>CVT比・二次減速比・タイヤ・上限回転から、最高速と回転数を出します。A（今）とB（変更案）を並べて比べられます。スズキ・ヤマハ・ホンダの車種プリセットと、車種別のギア・ベルトの切り替え付き</small></h1>
+    <h1>スクーター最高速計算機<small>CVT比・最終減速比・タイヤ・上限回転から、最高速と回転数を出します。A（今）とB（変更案）を並べて比べられます。スズキ・ヤマハ・ホンダの車種プリセットと、車種別のギア・ベルトの切り替え付き</small></h1>
     <div class="hbtns"><button type="button" class="info-btn tour-btn" id="openTour" aria-haspopup="dialog" aria-controls="tourSheet"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M8 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm8 0a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM8 13c-2.7 0-6 1.3-6 3.5V19h12v-2.5C14 14.3 10.7 13 8 13zm8 0c-.5 0-1 0-1.6.1 1 .8 1.6 1.9 1.6 3.4V19h6v-2.5c0-2.2-3.3-3.5-6-3.5z"/></svg>ツーリング</button><button type="button" class="info-btn run-btn" id="openRun" aria-haspopup="dialog" aria-controls="runSheet"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 4a10 10 0 0 0-8.66 15h17.32A10 10 0 0 0 12 4zm0 2a8 8 0 0 1 7.4 11H4.6A8 8 0 0 1 12 6zm4.2 3.1-4.6 3.4a1.6 1.6 0 1 0 1.5 2.1l3.8-4.4z"/></svg>走行メーター</button><button type="button" class="info-btn exp-btn" id="openExport" aria-haspopup="dialog" aria-controls="exportSheet"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M5 4h14a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm0 2v9.6l3.5-3.5 3 3 4-4.6L19 14V6H5zm4 3.2a1.7 1.7 0 1 1-3.4 0 1.7 1.7 0 0 1 3.4 0z"/></svg>比較を画像で保存</button><button type="button" class="info-btn" id="openInfo" aria-haspopup="dialog" aria-controls="info"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M19.4 13a7.6 7.6 0 0 0 0-2l2.1-1.6-2-3.4-2.5 1a7.4 7.4 0 0 0-1.7-1L15 3.3h-4l-.4 2.7a7.4 7.4 0 0 0-1.7 1l-2.5-1-2 3.4L6.6 11a7.6 7.6 0 0 0 0 2l-2.1 1.6 2 3.4 2.5-1c.5.4 1.1.8 1.7 1l.4 2.7h4l.4-2.7c.6-.2 1.2-.6 1.7-1l2.5 1 2-3.4zM13 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7z" transform="translate(-1 0)"/></svg>設定・情報</button></div>
   </header>
 
@@ -484,7 +484,7 @@ ul.src{margin:0;padding-left:1.2em;display:grid;gap:6px;font-size:13px;line-heig
 
   <section class="card" aria-labelledby="h-gear">
     <h2 id="h-gear">車種別ギア一覧 <span class="en">Final gears</span></h2>
-    <p class="hint">二次減速比（ギアケースの中の減速比を全部掛けた値）の一覧です。適合に関係なく、ギア比だけで比べられます。「A」「B」を押すと、その列のギアに入ります。数字が小さいほどハイギア（最高速寄り）です。</p>
+    <p class="hint">最終減速比（ギアケースの中の減速比を全部掛けた値）の一覧です。適合に関係なく、ギア比だけで比べられます。「A」「B」を押すと、その列のギアに入ります。数字が小さいほどハイギア（最高速寄り）です。</p>
     <div class="tablewrap"><table id="gearTable"></table></div>
   </section>
 
@@ -613,7 +613,7 @@ ul.src{margin:0;padding-left:1.2em;display:grid;gap:6px;font-size:13px;line-heig
     <section class="sh">
       <h3>計算式と根拠</h3>
       <div class="fx"><h4>1. 速度と回転数</h4>
-        <code>後輪の回転[rpm] = エンジン回転[rpm] ÷ (CVT比 × 二次減速比)
+        <code>後輪の回転[rpm] = エンジン回転[rpm] ÷ (CVT比 × 最終減速比)
 速度[km/h] = 後輪の回転[rpm] × 転がり外周[m] × 0.06</code>
         <p><b>根拠</b>　エンジンの回転はCVTとギアで減速されて後輪に伝わるので、減速比で割ると後輪の回転数になります。後輪が1回転すると転がり外周の長さだけ進みます。0.06は「毎分」を「毎時」に（×60）、「m」を「km」に（÷1000）直す係数です。</p></div>
       <div class="fx"><h4>2. 転がり外周</h4>
@@ -624,12 +624,12 @@ ul.src{margin:0;padding-left:1.2em;display:grid;gap:6px;font-size:13px;line-heig
 インチ（例 3.00-10）：3.00-10 ≒ 413mm、3.50-10 ≒ 430mm、2.75-12 ≒ 435mm
 上記以外のインチ表記：外径 ≒ リム径×25.4 + 2 × 幅×25.4</code>
         <p><b>根拠</b>　メトリック表記は「幅mm／扁平率%－リム径インチ」なので、タイヤの高さ（幅×扁平率）を上下2回ぶん足すと外径になります。インチ表記は扁平率が決まっていないので、よく使うサイズは一般的な実測値を使い、それ以外は扁平率100%として近似しています。</p></div>
-      <div class="fx"><h4>4. 二次減速比</h4>
-        <code>二次減速比 = 各段の（被動側の歯数 ÷ 駆動側の歯数）の掛け算
+      <div class="fx"><h4>4. 最終減速比</h4>
+        <code>最終減速比 = 一次減速比 × 二次減速比（各段の 被動側の歯数 ÷ 駆動側の歯数 の掛け算）
 例：11-38, 11-41 → 38/11 × 41/11 = 12.87</code>
-        <p><b>根拠</b>　ギアが2段なら、1段目で減速した回転を2段目がさらに減速するので、比は掛け算になります。スズキの諸元表の減速比も、ヤマハの「1次減速比」「2次減速比」も、どちらもギアケースの中の段なので、両方を掛けたものがこのアプリの二次減速比です。</p></div>
+        <p><b>根拠</b>　ギアが2段なら、1段目で減速した回転を2段目がさらに減速するので、比は掛け算になります。スクーターのギアケースの中は2段で、1段目が一次減速比、2段目が二次減速比です。諸元表の「1次減速比」「2次減速比」を掛けたものが、このアプリの最終減速比（ギアケース全体の減速比）です。CVTの変速比はこれに含みません。</p></div>
       <div class="fx"><h4>5. ギアで決まる最高速</h4>
-        <code>ギアで決まる最高速 = 上限回転 ÷ (CVTトップ比 × 二次減速比) × 転がり外周 × 0.06</code>
+        <code>ギアで決まる最高速 = 上限回転 ÷ (CVTトップ比 × 最終減速比) × 転がり外周 × 0.06</code>
         <p><b>根拠</b>　CVTが一番ハイ（トップ比）まで変速しきって、エンジンが走行中の上限回転に達したときの速度です。力が余っていても、これより先はギアが足りずに伸びません。</p></div>
       <div class="fx"><h4>6. 出力で決まる最高速</h4>
         <code>後輪の出力[W] = 最高出力[ps] × 735.5 × 駆動効率
@@ -643,12 +643,12 @@ ul.src{margin:0;padding-left:1.2em;display:grid;gap:6px;font-size:13px;line-heig
 出力で決まる速度で、トップ比の回転がピークに届かない → ハイ寄り
 それ以外 → ほぼ最適</code>
         <p><b>根拠</b>　実際の最高速は、ギアの限界と力の限界のうち、先に来た方で止まります。「ハイ寄り」は、トップ比まで使い切る前に力が尽きて、CVTの途中で最高速になる状態です。</p></div>
-      <div class="fx"><h4>8. 最適な二次減速比</h4>
+      <div class="fx"><h4>8. 最適な最終減速比</h4>
         <code>後輪の回転[rpm] = v[m/s] ÷ 転がり外周[m] × 60
-最適な二次減速比 = ピーク回転 ÷ (出力で決まる最高速での後輪の回転 × CVTトップ比)</code>
+最適な最終減速比 = ピーク回転 ÷ (出力で決まる最高速での後輪の回転 × CVTトップ比)</code>
         <p><b>根拠</b>　最高速のときに、トップ比でちょうどピーク出力の回転になるギア比にすると、エンジンの出力を最後まで使い切れます。これよりロー寄りだと回転が先に上限に当たり、ハイ寄りだとピークまで回りません。</p></div>
       <div class="fx"><h4>9. Lowでピーク回転に届く速度</h4>
-        <code>Low側の速度 = ピーク回転 ÷ (CVT Low比 × 二次減速比) × 転がり外周 × 0.06</code>
+        <code>Low側の速度 = ピーク回転 ÷ (CVT Low比 × 最終減速比) × 転がり外周 × 0.06</code>
         <p><b>根拠</b>　この速度まではCVTがLow比のままで、エンジンはピーク回転まで上がりきっていません。実際はクラッチのつながる回転でも変わります。</p></div>
       <div class="fx"><h4>10. ベルトを替えたときのCVT比</h4>
         <code>ベルト長 L = 2C + π(r1 + r2) + (r2 − r1)² ÷ C
@@ -663,9 +663,9 @@ CVT比 = r2 ÷ r1　（r1：ドライブ側の半径、r2：ドリブン側の�
         <code>軸間距離 C ≒ (純正ベルト長 − 275) ÷ 2</code>
         <p><b>根拠</b>　10のベルト長の式から、プーリーの大きさが同じくらいなら、軸間距離はベルト長でほぼ決まります。スーパーモレ（NTB表記675mm）で200mmになるように合わせた目安なので、実測値があれば入れてください。</p></div>
       <div class="fx"><h4>12. 回転数と速度のグラフ（走り方の目安）</h4>
-        <code>Low区間　：回転 = 速度 ÷ (転がり外周 × 0.06) × Low比 × 二次減速比
-変速区間：回転 = ピーク回転（変速比 = ピーク回転 ÷ (後輪の回転 × 二次減速比)）
-トップ区間：回転 = 速度 ÷ (転がり外周 × 0.06) × トップ比 × 二次減速比
+        <code>Low区間　：回転 = 速度 ÷ (転がり外周 × 0.06) × Low比 × 最終減速比
+変速区間：回転 = ピーク回転（変速比 = ピーク回転 ÷ (後輪の回転 × 最終減速比)）
+トップ区間：回転 = 速度 ÷ (転がり外周 × 0.06) × トップ比 × 最終減速比
 予想最高速（●）で終わる</code>
         <p><b>根拠</b>　CVTは、ウエイトローラーの重さが合っていれば、エンジンをピーク出力の回転に保ったまま変速します。そのため、Lowのまま回転が上がる → ピーク回転のまま変速する → トップになってから回転が上がる、の3つの区間で表しています。実際はクラッチのすべりやローラーの重さで少し変わります。出力を入れていないときは、上限回転で変速するとしています。</p></div>
       <div class="fx"><h4>13. 駆動系の図のプーリー半径</h4>
@@ -856,7 +856,7 @@ const PRESET_BELT={mollet_bb:"s_sepia",mollet_a:"s_sepia",mollet_fa14a:"s_sepia"
   h_ldio_zx:"h_zx",h_ldio_zx_bb:"h_zx",h_canopy_ta02:"h_zx",h_today_af61:"h_today",h_today_af67:"h_today",h_lead_af20:"h_lead50"};
 PRESETS.forEach(p=>{const b=BELTS.find(x=>x.id===PRESET_BELT[p.id]);if(b)p.belt=b;});
 const BELT_DEF={bW:"",bL:"",bUse:"same",uW:"",uL:"",bC:"",bAng:28};
-/* ギア（二次減速比）は車種プリセットと同じ出典（スズキ諸元表・ヤマハ取扱説明書・カタログ）。同じ比の車種はまとめる */
+/* ギア（最終減速比）は車種プリセットと同じ出典（スズキ諸元表・ヤマハ取扱説明書・カタログ）。同じ比の車種はまとめる */
 const GEARS=[
   {mk:"スズキ",id:"g_mollet",label:"スーパーモレ/セピア/ハイアップ",sec:[3.454,3.727],teeth:"11-38, 11-41"},
   {mk:"スズキ",id:"g_fa14a",label:"モレ FA14A",sec:[3.5,1.928,1.769]},
@@ -1052,16 +1052,16 @@ function colHTML(c,i){
     <div class="field"><label for="${L}-lo">CVT Low比</label><input id="${L}-lo" type="number" step="0.001" value="${c.lo}"></div>
     <div class="field"><label for="${L}-top">CVT トップ比</label><input id="${L}-top" type="number" step="0.001" value="${c.top}"></div>
   </div>
-  <div class="field"><label for="${L}-gear">ギア（二次減速比）を車種から選ぶ</label><select id="${L}-gear">${gearOptions(c.gearId)}</select></div>
-  <div class="field"><span style="font-size:12px;color:var(--ink-2)">二次減速比の入れ方</span>
-    <div class="seg" role="group" aria-label="${L}の二次減速比の入れ方">
+  <div class="field"><label for="${L}-gear">ギア（最終減速比）を車種から選ぶ</label><select id="${L}-gear">${gearOptions(c.gearId)}</select></div>
+  <div class="field"><span style="font-size:12px;color:var(--ink-2)">最終減速比の入れ方</span>
+    <div class="seg" role="group" aria-label="${L}の最終減速比の入れ方">
       <button type="button" data-m="stages" aria-pressed="${c.secMode==="stages"}">諸元表の掛け算</button>
       <button type="button" data-m="teeth" aria-pressed="${c.secMode==="teeth"}">歯数</button>
       <button type="button" data-m="direct" aria-pressed="${c.secMode==="direct"}">数値</button>
     </div></div>
-  <div class="field" ${c.secMode==="stages"?"":"hidden"}><label for="${L}-stages">二次減速比（例 3.454 × 3.727、52/13 × 43/13）</label><input id="${L}-stages" type="text" value="${esc(c.stages)}"></div>
+  <div class="field" ${c.secMode==="stages"?"":"hidden"}><label for="${L}-stages">最終減速比＝一次×二次（例 3.454 × 3.727、52/13 × 43/13）</label><input id="${L}-stages" type="text" value="${esc(c.stages)}"></div>
   <div class="field" ${c.secMode==="teeth"?"":"hidden"}><label for="${L}-teeth">歯数（駆動-被動、段ごとにカンマ。例 11-38, 11-41）</label><input id="${L}-teeth" type="text" value="${esc(c.teeth)}" placeholder="11-38, 11-41"></div>
-  <div class="field" ${c.secMode==="direct"?"":"hidden"}><label for="${L}-sec">二次減速比</label><input id="${L}-sec" type="number" step="0.01" value="${c.sec}"></div>
+  <div class="field" ${c.secMode==="direct"?"":"hidden"}><label for="${L}-sec">最終減速比</label><input id="${L}-sec" type="number" step="0.01" value="${c.sec}"></div>
   <div class="g2">
     <div class="field"><label for="${L}-tire">後輪タイヤ（例 3.00-10、100/90-10）</label><input id="${L}-tire" type="text" value="${esc(c.tire)}"></div>
     <div class="field"><label for="${L}-od">外径を直接入力（任意）</label><div class="unit"><input id="${L}-od" type="number" step="1" value="${esc(c.odOverride)}" placeholder="自動"><span>mm</span></div></div>
@@ -1135,7 +1135,7 @@ function easyColHTML(e,i){
   <div class="field"><label for="${L}-eP">車種</label><select id="${L}-eP">${pre}</select></div>
   ${presetNote(p.id)}
   <div class="g2">
-    <div class="field"><label for="${L}-eG">ギア（二次減速比）</label><select id="${L}-eG">${gear}</select></div>
+    <div class="field"><label for="${L}-eG">ギア（最終減速比）</label><select id="${L}-eG">${gear}</select></div>
     <div class="field"><label for="${L}-eB">ベルト</label><select id="${L}-eB"${p.belt?"":" disabled"}>${belt}</select></div>
     <div class="field"><label for="${L}-eT">後輪タイヤ</label><select id="${L}-eT">${tire}</select></div>
     <div class="field"><label for="${L}-eS">ボスシム（プーリーのボスに足す）</label><select id="${L}-eS">${SHIM_OPTS.map(([v,t])=>opt(v,t,e.shim==null?"":String(e.shim))).join("")}${e.shim&&!SHIM_OPTS.some(([v])=>v===String(e.shim))?opt(String(e.shim),shimTxt(+e.shim),String(e.shim)):""}</select></div>
@@ -1175,7 +1175,7 @@ function renderCols(){
     on("shim","input",e=>{c.shim=e.target.value;update();});
     on("shim","change",()=>{renderCols();update();});
     document.querySelectorAll(`[aria-label="${L}のボスシムをよく使う厚さから選ぶ"] button`).forEach(b=>b.addEventListener("click",()=>{c.shim=+b.dataset.shim;renderCols();update();}));
-    document.querySelectorAll(`[aria-label="${L}の二次減速比の入れ方"] button`).forEach(b=>b.addEventListener("click",()=>{
+    document.querySelectorAll(`[aria-label="${L}の最終減速比の入れ方"] button`).forEach(b=>b.addEventListener("click",()=>{
       const cur=secOf(c);c.secMode=b.dataset.m;if(c.secMode==="direct"&&cur)c.sec=+cur.toFixed(3);renderCols();update();}));
     for(const k of ["lo","top","limit","ps","peak","mass","CdA","eta","roll"])on(k,"input",e=>{const v=parseFloat(e.target.value);c[k]=isFinite(v)?v:null;update();});
     on("sec","input",e=>{const v=parseFloat(e.target.value);if(isFinite(v))c.sec=v;manualSec();update();});
@@ -1209,19 +1209,19 @@ function update(){
     if(easy&&!r.err){
       note.innerHTML=`<span>CVT比 ${f(r.lo,3)}〜${f(r.top,3)}</span><span>ギア ${f(r.sec,3)}</span><span>タイヤ外径 ${f(r.od,0)}mm</span><span>${c.ps}ps／${f(c.peak,0)}rpm</span><span>上限 ${f(c.limit,0)}rpm</span>${c.shim?`<span>${shimTxt(c.shim)}</span>`:""}`;
       res.innerHTML=easyResHTML(c,r);return;}
-    if(r.err){note.textContent=`二次減速比 ${f(r.sec,3)}／外径 ${r.od?f(r.od,0)+"mm":"タイヤ表記を読めません"}`;res.innerHTML=`<p class="advice">必須の値を確認してください（CVT比、二次減速比、タイヤ）。</p>`;return;}
-    note.textContent=`二次減速比 ${f(r.sec,3)}／外径 ${f(r.od,0)}mm（転がり外周 ${f(r.circ,3)}m）／全体比 Low ${f(r.lo*r.sec,1)}・トップ ${f(r.top*r.sec,2)}`;
+    if(r.err){note.textContent=`最終減速比 ${f(r.sec,3)}／外径 ${r.od?f(r.od,0)+"mm":"タイヤ表記を読めません"}`;res.innerHTML=`<p class="advice">必須の値を確認してください（CVT比、最終減速比、タイヤ）。</p>`;return;}
+    note.textContent=`最終減速比 ${f(r.sec,3)}／外径 ${f(r.od,0)}mm（転がり外周 ${f(r.circ,3)}m）／全体比 Low ${f(r.lo*r.sec,1)}・トップ ${f(r.top*r.sec,2)}`;
     let html=`<div class="big">
       <div class="stat"><span class="k">ギアで決まる最高速</span><span class="v">${f(r.vGear,1)}<small>km/h</small></span><span class="d">${f(c.limit,0)}rpm・トップ比</span></div>`;
     if(r.vPow!=null){
       html+=`<div class="stat"><span class="k">予想最高速</span><span class="v">${f(r.vEst,1)}<small>km/h</small></span><span class="d">そのときの回転 約${f(r.rpmAt,0)}rpm</span></div></div>
       <span class="pill ${r.status.cls}">${r.status.t}</span>
       <dl class="kv"><dt>出力で決まる最高速</dt><dd>${f(r.vPow,1)} km/h</dd>
-      ${r.opt!=null?`<dt>最適な二次減速比</dt><dd>${f(r.opt,2)}</dd><dd class="sub">ピーク回転で最高速になる比。今 ${f(r.sec,2)} → ${r.opt<r.sec?"あと"+f((r.sec/r.opt-1)*100,0)+"%ハイにできる":f((r.opt/r.sec-1)*100,0)+"%ローにしてよい"}</dd>`:""}
+      ${r.opt!=null?`<dt>最適な最終減速比</dt><dd>${f(r.opt,2)}</dd><dd class="sub">ピーク回転で最高速になる比。今 ${f(r.sec,2)} → ${r.opt<r.sec?"あと"+f((r.sec/r.opt-1)*100,0)+"%ハイにできる":f((r.opt/r.sec-1)*100,0)+"%ローにしてよい"}</dd>`:""}
       ${r.vFullLow!=null?`<dt>Lowでピーク回転に届く速度</dt><dd>${f(r.vFullLow,0)} km/h</dd>`:""}</dl>`;
     }else{
       html+=`<div class="stat"><span class="k">Lowでの速度</span><span class="v">${f(r.v(c.limit,r.lo),1)}<small>km/h</small></span><span class="d">${f(c.limit,0)}rpm・Low比</span></div></div>
-      <p class="advice">最高出力と回転数を入れると、出力で決まる最高速と最適な二次減速比も出ます。</p>`;
+      <p class="advice">最高出力と回転数を入れると、出力で決まる最高速と最適な最終減速比も出ます。</p>`;
     }
     res.innerHTML=html;
   });
@@ -1246,7 +1246,7 @@ function renderDiff(){
     return h+"</tr>";};
   const all=fn=>Rs.map((r,i)=>fn(r,Cs[i]));
   let h=`<thead><tr><th>項目</th>${Cs.map((c,i)=>`<th><span class="dot" style="background:${LCV(i)}"></span>${LET[i]}<span class="nm">${esc(c.name)}</span></th>`).join("")}${Cs.slice(1).map((c,i)=>`<th>${LET[i+1]} − A</th>`).join("")}</tr></thead><tbody>`;
-  h+=row("二次減速比",all(r=>r.sec),3,"",false);
+  h+=row("最終減速比",all(r=>r.sec),3,"",false);
   h+=row("タイヤ外径",all(r=>r.od),0," mm",true);
   if(Cs.some(c=>shimOf(c)))h+=row("ボスシム",all((r,c)=>shimOf(c)),1," mm",null);
   h+=row("CVT Low比<small>ベルト・シム込み</small>",all(r=>r.lo),3,"",true);
@@ -1288,7 +1288,7 @@ $("#beltTable").addEventListener("click",e=>{const btn=e.target.closest("button[
   const sel=document.getElementById(L+(S.mode==="easy"?"-eB":"-bUse"));if(sel)sel.scrollIntoView({block:"center",behavior:"smooth"});});
 renderBeltTable();
 function renderGearTable(){
-  let h=`<thead><tr><th>車種</th><th>二次減速比</th><th>使う</th><th>段ごとの比</th><th>歯数</th></tr></thead><tbody>`;
+  let h=`<thead><tr><th>車種</th><th>最終減速比</th><th>使う</th><th>段ごとの比</th><th>歯数</th></tr></thead><tbody>`;
   for(const mk of MAKERS){
     h+=`<tr class="grp"><td colspan="5">${mk}</td></tr>`;
     for(const g of GEARS.filter(x=>x.mk===mk))h+=`<tr><td class="bname">${esc(g.label)}</td><td><b>${g.total.toFixed(3)}</b></td>
@@ -1331,7 +1331,7 @@ function labelSpread(E,dyTh,dxTh,step){const o=E.slice().sort((a,b)=>a.x-b.x);
   for(let i=1;i<o.length;i++)for(let j=0;j<i;j++){const a=o[j],b=o[i];if(Math.abs((a.y+a.dy)-(b.y+b.dy))<dyTh&&Math.abs(a.x-b.x)<dxTh){if(j===0&&!a.left)a.left=true;b.dy+=step+(b.dy<0?-b.dy:0);}}}
 function renderChart(){
   const box=$("#rsChart"),lg=$("#chartLegend");if(!box)return;
-  if(!R.length||R.some(r=>r.err)){box.innerHTML=`<p class="hint" style="padding:12px 0">${LET.slice(0,CC.length).join("・")}の必須項目（CVT比・二次減速比・タイヤ）を入れるとグラフを表示します。</p>`;lg.innerHTML="";return;}
+  if(!R.length||R.some(r=>r.err)){box.innerHTML=`<p class="hint" style="padding:12px 0">${LET.slice(0,CC.length).join("・")}の必須項目（CVT比・最終減速比・タイヤ）を入れるとグラフを表示します。</p>`;lg.innerHTML="";return;}
   const P=CC.map((c,i)=>opPath(c,R[i])),K=i=>"abc"[i];
   lg.innerHTML=CC.map((c,i)=>`<span><i class="sw" style="background:${LCV(i)}"></i>${LET[i]}　${esc(c.name||LET[i])}</span>`).join("")+
     `<span><i class="ln"></i>走り方の目安</span><span><i class="ln dash"></i>Low比・トップ比の線</span>`;
@@ -1510,7 +1510,7 @@ function mechButtons(){
 function renderMech(){
   mechButtons();
   const X=mechCtx();MECH.X=X;
-  if(!X){$("#mech2d").innerHTML='<p class="hint" style="padding:12px">この列の必須項目（CVT比・二次減速比・タイヤ）を入れると図を表示します。</p>';$("#mechChain").innerHTML="";$("#mechLT").innerHTML="";$("#mechPhase").textContent="";$("#mechNote").textContent="";return;}
+  if(!X){$("#mech2d").innerHTML='<p class="hint" style="padding:12px">この列の必須項目（CVT比・最終減速比・タイヤ）を入れると図を表示します。</p>';$("#mechChain").innerHTML="";$("#mechLT").innerHTML="";$("#mechPhase").textContent="";$("#mechNote").textContent="";return;}
   const sl=$("#mechV");sl.max=X.vEnd.toFixed(1);
   if(MECH.v==null||MECH.atEnd||MECH.v>X.vEnd)MECH.v=X.vEnd;sl.value=MECH.v;
   $("#mechLT").innerHTML=ltHTML(X);
@@ -1775,7 +1775,7 @@ function detailToEasy(c,old){
   if(c.name&&c.name!==shortName(base))e.name=c.name;
   const g=GEARS.find(x=>x.id===(e.gearId||PRESET_GEAR[base.id])),secE=g?g.total:base.sec.reduce((a,b)=>a*b,1);
   if(!p||Math.abs(c.lo-base.lo)>1e-3||Math.abs(c.top-base.top)>1e-3||Math.abs((secOf(c)||0)-secE)>5e-3||c.bUse==="custom"||(c.odOverride&&+c.odOverride>0))
-    syncNote="くわしいモードで入れた細かい数値（CVT比・二次減速比など）は、かんたんモードでは車種の値で計算します。くわしいモードに戻すと、入れた数値はそのまま残っています。";
+    syncNote="くわしいモードで入れた細かい数値（CVT比・最終減速比など）は、かんたんモードでは車種の値で計算します。くわしいモードに戻すと、入れた数値はそのまま残っています。";
   return e;}
 function syncModes(from,to){
   S.sync=S.sync||{};syncNote="";
@@ -1935,7 +1935,7 @@ function buildExport(){
   group("仕様");
   rowT("車種プリセット",A((r,c)=>presetLabel(c)));
   rowT("ギア",A((r,c)=>gearLabel(c)));
-  rowN("二次減速比",A(r=>r.sec),3,"",false);
+  rowN("最終減速比",A(r=>r.sec),3,"",false);
   rowT("ベルト",A((r,c)=>beltText(c,r)));
   if(Cs.some(c=>shimOf(c)))rowN("ボスシム（追加）",A((r,c)=>shimOf(c)),1,"mm",null);
   rowN("CVT Low比",A(r=>r.lo),3,"ベルト・シム込み",true);
@@ -1951,7 +1951,7 @@ function buildExport(){
     rowN("予想最高速",A(r=>r.vEst),1,"km/h",true);
     rowN("予想最高速での回転",A(r=>r.rpmAt),0,"rpm",false);
     rowT("判定",A(r=>r.status.t));
-    if(Rs.every(r=>r.opt!=null))rowN("最適な二次減速比",A(r=>r.opt),3,"",null);
+    if(Rs.every(r=>r.opt!=null))rowN("最適な最終減速比",A(r=>r.opt),3,"",null);
     if(Rs.every(r=>r.vFullLow!=null))rowN("Lowでピーク回転に届く速度",A(r=>r.vFullLow),0,"km/h",true);
   }
   rowN("60km/hの回転（トップ比）",A(r=>r.r(60,r.top)),0,"rpm",false);
@@ -1977,7 +1977,7 @@ async function openExport(){
   const msg=$("#expMsg");
   try{if(document.fonts&&document.fonts.ready)await document.fonts.ready;}catch(e){}
   expCanvas=buildExport();
-  if(!expCanvas){$("#expImg").removeAttribute("src");msg.textContent="比べる列の必須項目（CVT比・二次減速比・タイヤ）を入れると画像にできます。";$("#saveExport").hidden=true;openSheet($("#exportSheet"));return;}
+  if(!expCanvas){$("#expImg").removeAttribute("src");msg.textContent="比べる列の必須項目（CVT比・最終減速比・タイヤ）を入れると画像にできます。";$("#saveExport").hidden=true;openSheet($("#exportSheet"));return;}
   $("#saveExport").hidden=false;$("#expImg").src=expCanvas.toDataURL("image/jpeg",.92);
   expBlob=null;expCanvas.toBlob(b=>{expBlob=b;},"image/jpeg",.92);
   msg.textContent=IS_IOS?"比較を1枚にまとめました。「画像を保存」→「画像を保存」で写真に入ります。画像を長押しして「"+"写真に追加」でも保存できます。":"比較を1枚にまとめました。";
@@ -2054,7 +2054,7 @@ function meterBike(){const b=GAR.bikes.find(x=>x.id===GAR.meter);
   if(b){if(!MB_CACHE||MB_CACHE.id!==b.id||MB_CACHE.at!==b.at){const c=clone(b.col);MB_CACHE={id:b.id,at:b.at,c,r:calc(c),name:b.name};}return MB_CACHE;}
   return {c:CC[0],r:R[0],name:CC[0]?CC[0].name:"A",isA:true};}
 function bikeSum(c){const r=calc(c),p=PRESETS.find(x=>x.id===c.preset),sec=secOf(c),sh=shimOf(c),od=odOf(c);
-  const a=[];if(p)a.push(shortName(p));a.push(`CVT ${f(c.lo,3)}〜${f(c.top,3)}`);if(sec)a.push(`二次 ${f(sec,3)}`);if(c.tire||od)a.push(`タイヤ ${c.tire||""}${od?`（${Math.round(od)}mm）`:""}`);
+  const a=[];if(p)a.push(shortName(p));a.push(`CVT ${f(c.lo,3)}〜${f(c.top,3)}`);if(sec)a.push(`最終 ${f(sec,3)}`);if(c.tire||od)a.push(`タイヤ ${c.tire||""}${od?`（${Math.round(od)}mm）`:""}`);
   a.push(`上限 ${Math.round(c.limit||0)}rpm`);if(sh)a.push(`シム ${shimTxt(sh)}`);if(c.bUse&&c.bUse!=="same"){const bb=BELTS.find(x=>x.id===c.bUse);a.push(bb?`ベルト ${bb.w}×${bb.L}`:c.bUse==="custom"?`ベルト ${c.uW}×${c.uL}`:"");}
   return a.filter(Boolean).join("・")+(r.err?"":`<br>予想最高速 <b>${f(r.vEst,1)} km/h</b>（約${f(r.rpmAt,0)}rpm）`);}
 const colNames=st=>st.mode==="easy"?st.easy.cols.map(e=>easyCol(e).name):st.cols.map(c=>c.name||"");
@@ -2516,7 +2516,7 @@ const METRICS=[
   {id:"rpm",lab:"エンジン回転",u:"rpm",lg:1,g:()=>{const r=lgv("rpm");return r==null?null:String(Math.round(r/10)*10);}},
   {id:"rpmmax",lab:"最高回転",u:"rpm",lg:1,g:X=>X.L&&X.L.rpmMax?String(Math.round(X.L.rpmMax/10)*10):null},
   {id:"wheel",lab:"後輪の速度",u:"km/h",lg:1,g:()=>{const w=wheelKmh();return w==null?null:w.toFixed(1);}},
-  {id:"cvt",lab:"実際のCVT比",u:"",lg:1,g:()=>{const rpm=lgv("rpm"),w=wheelRpm(),r=meterBike().r;if(rpm==null||w==null||w<30||!r||r.err)return null;return (rpm/(w*r.sec)).toFixed(2);},d:"回転数と後輪の回転から計算（メーターで使うバイクの二次減速比を使用）"},
+  {id:"cvt",lab:"実際のCVT比",u:"",lg:1,g:()=>{const rpm=lgv("rpm"),w=wheelRpm(),r=meterBike().r;if(rpm==null||w==null||w<30||!r||r.err)return null;return (rpm/(w*r.sec)).toFixed(2);},d:"回転数と後輪の回転から計算（メーターで使うバイクの最終減速比を使用）"},
   {id:"slip",lab:"スリップ率",u:"%",lg:1,g:X=>{const w=wheelKmh();return w==null||X.v==null||X.v<10?null:sgn((w-X.v)/X.v*100,1);},d:"後輪の速度とGPSの速度の差"},
   {id:"clutch",lab:"クラッチミート",u:"rpm",lg:1,g:X=>X.L&&X.L.clutch?String(Math.round(X.L.clutch/10)*10):null,d:"後輪が回り出した瞬間の回転数（最新）"},
   {id:"glong",lab:"前後G",u:"G",lg:1,g:()=>{const a=lgv("ax");return a==null?null:sgn(a,2);},d:"＋が加速、−がブレーキ"},
