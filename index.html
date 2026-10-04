@@ -2104,7 +2104,7 @@ let GSIDE=0,GMSG="",GMX="";
 /* ---------- Mollet Xi へ送る ----------
    ベルト・ボスシムの補正をしたあとのCVT比、最終減速比、転がり外周など、この計算機の calc() の結果をそのまま渡す。
    リンクは https://noixi749.github.io/mollet-xi/#bike=MXB1.＋JSONをbase64url。サーバーには何も送らない（#の後ろはページの中だけで読む） */
-const MX_URL="https://noixi749.github.io/mollet-xi/";
+const MX_URL="https://noixi749.github.io/Mollet-Xi/";
 function mxBike(bk){const c=clone(bk.col),r=calc(c);if(r.err||!(r.lo>0)||!(r.top>0))return null;
   const p=PRESETS.find(x=>x.id===c.preset),ub=r.belt&&r.belt.changed&&r.belt.u&&!r.belt.u.stock?r.belt.u:null,r4=x=>Math.round(x*1e4)/1e4,r1=x=>Math.round(x*10)/10;
   return {v:1,src:"topspeed",gid:bk.id,gat:bk.at||0,name:bk.name,lo:r4(r.lo),top:r4(r.top),sec:r4(r.sec),circ:r1(r.circ*1000),mass:+c.mass||0,cda:+c.CdA||0,crr:+c.crr||0,peak:+c.peak||0,limit:+c.limit||0,
